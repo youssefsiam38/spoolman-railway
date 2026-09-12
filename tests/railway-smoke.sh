@@ -12,6 +12,9 @@ BASE_URL=${1:?usage: railway-smoke.sh https://domain}; BASE_URL=${BASE_URL%/}; e
 host=${BASE_URL#https://}
 
 section "TLS and routing"
+# Railway's edge serves 404 for a few seconds while a deployment takes over, so wait rather than
+# racing the cutover when this runs straight after a deploy.
+wait_for_code "$BASE_URL/api/v1/health" 200 180 || true
 assert_eq "health route answers over https" "200" "$(http_code "$BASE_URL/api/v1/health")"
 assert_contains "valid certificate" "SSL certificate verify ok" "$(curl -sv -o /dev/null "$BASE_URL/api/v1/health" 2>&1 || true)"
 assert_contains "http -> https" "https://$host" "$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' --max-time 20 "http://$host/api/v1/health")"
