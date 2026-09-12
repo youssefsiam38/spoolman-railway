@@ -1,0 +1,25 @@
+# Local test topology. Mirrors the Railway deployment: one public service, one volume.
+name: spoolman-railway-test
+
+services:
+  spoolman:
+    # Built from this repository. CI and the Railway template use the published GHCR image instead.
+    build:
+      context: .
+      args:
+        WRAPPER_VERSION: ${WRAPPER_VERSION:-0.0.0-local}
+        VCS_REF: ${VCS_REF:-local}
+    image: ${SPOOLMAN_RAILWAY_IMAGE:-spoolman-railway:local}
+    restart: unless-stopped
+    environment:
+      PORT: '8000'
+      SPOOLMAN_AUTH_USERNAME: admin
+      SPOOLMAN_AUTH_PASSWORD: local-test-only-spoolman-password
+      TZ: UTC
+    volumes:
+      - spool:/home/app/.local/share/spoolman
+    ports:
+      - '127.0.0.1:8000:8000'
+
+volumes:
+  spool:
