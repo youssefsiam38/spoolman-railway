@@ -87,12 +87,12 @@ jobs:
 
       - name: Smoke tests against candidate
         env:
-          MALOJA_RAILWAY_IMAGE: spoolman-railway:candidate
+          SPOOLMAN_RAILWAY_IMAGE: spoolman-railway:candidate
         run: tests/smoke.sh
 
       - name: Persistence tests against candidate
         env:
-          MALOJA_RAILWAY_IMAGE: spoolman-railway:candidate
+          SPOOLMAN_RAILWAY_IMAGE: spoolman-railway:candidate
         run: tests/persistence.sh
 
       - name: Tear down test stack

@@ -40,6 +40,16 @@ assert_contains "everything else is behind basic auth" 'basic_auth' "$ep"
 assert_contains "the generated config is validated before use" 'caddy validate' "$ep"
 
 section "workflows"
+# a stale image-override name from a copied workflow makes CI test the wrong image, and the failure
+# looks like a missing local build rather than a configuration mistake
+override=$(grep -oE '[A-Z_]*_RAILWAY_IMAGE' compose.yaml | head -1)
+for wf in .github/workflows/*.yml; do
+  if grep -q 'candidate' "$wf" && ! grep -q "$override" "$wf"; then
+    fail "$wf tests a candidate image but never sets $override"
+  else
+    pass "image override name matches compose in $wf"
+  fi
+done
 for wf in .github/workflows/*.yml; do
   if grep -qE 'uses: .*@[0-9a-f]{40}' "$wf" && ! grep -qE 'uses: .*@v[0-9]+\s*$' "$wf"; then
     pass "actions pinned by SHA in $wf"
