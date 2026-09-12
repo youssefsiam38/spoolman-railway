@@ -6,6 +6,8 @@ The published template. Reproduce it from this file if it ever has to be rebuilt
 |---|---|
 | Name | Spoolman |
 | Code | `spoolman` |
+| Template id | `b253d005-94b4-4e5e-9b5a-67539c7f727e` |
+| Deploy URL | https://railway.com/deploy/spoolman |
 | Category | Other |
 | Image | `ghcr.io/youssefsiam38/spoolman-railway:<version>` |
 | Icon | `assets/icon.png` |

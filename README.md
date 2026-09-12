@@ -7,7 +7,9 @@ This repository is a **community-maintained Railway template** for
 [Spoolman](https://github.com/Donkie/Spoolman). It is **not affiliated with the Spoolman project**.
 
 <!-- DEPLOY_BUTTON_START -->
-Deploy button is added once the template is published.
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/spoolman)
+
+Template page: https://railway.com/deploy/spoolman
 <!-- DEPLOY_BUTTON_END -->
 
 > **Read this before deploying.** Spoolman has no authentication of its own. Upstream is explicit
@@ -28,7 +30,7 @@ Deploy button is added once the template is published.
 |---|---|
 | Spoolman | 0.26.1 |
 | Caddy (the authenticating front door) | 2.10.2 |
-| Wrapper | see [releases](https://github.com/youssefsiam38/spoolman-railway/releases) |
+| Wrapper | v1.0.0 — `ghcr.io/youssefsiam38/spoolman-railway:1.0.0` ([releases](https://github.com/youssefsiam38/spoolman-railway/releases)) |
 
 One service, one volume, no external database. Why a wrapper:
 [ARCHITECTURE.md](ARCHITECTURE.md). In one sentence: Caddy holds the public port and asks for a
