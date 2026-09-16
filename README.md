@@ -30,7 +30,7 @@ Template page: https://railway.com/deploy/spoolman
 |---|---|
 | Spoolman | 0.26.1 |
 | Caddy (the authenticating front door) | 2.10.2 |
-| Wrapper | v1.0.0 — `ghcr.io/youssefsiam38/spoolman-railway:1.0.0` ([releases](https://github.com/youssefsiam38/spoolman-railway/releases)) |
+| Wrapper | v1.0.1 — `ghcr.io/youssefsiam38/spoolman-railway:1.0.1`, index digest `sha256:fa5e274b3625ec79a63b685affefd09e79417b750e7be818b7a00a1feb7eb6f0` ([releases](https://github.com/youssefsiam38/spoolman-railway/releases)) |
 
 One service, one volume, no external database. Why a wrapper:
 [ARCHITECTURE.md](ARCHITECTURE.md). In one sentence: Caddy holds the public port and asks for a
