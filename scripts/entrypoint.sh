@@ -9,8 +9,10 @@
 # protecting the data, and a public URL removes that boundary, so the wrapper restores it.
 set -uo pipefail
 
-log()  { printf '[spoolman-railway] %s\n' "$*" >&2; }
-fail() { log "FATAL: $*"; exit 1; }
+# Railway colours a log line by the stream it arrived on, so routine start-up messages go to stdout
+# and only failures go to stderr; otherwise the whole first boot is shown to the deployer in red.
+log()  { printf '[spoolman-railway] %s\n' "$*"; }
+fail() { printf '[spoolman-railway] FATAL: %s\n' "$*" >&2; exit 1; }
 
 : "${SPOOLMAN_HOST:=127.0.0.1}"
 : "${SPOOLMAN_INTERNAL_PORT:=8765}"
